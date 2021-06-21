@@ -10,8 +10,6 @@ hey，开发者，终于和你见面了。
 
 ```json
 {
-	"pluginName": "helloWorld",
-	"description": "我的第一个uTools插件",
 	"main": "index.html",
 	"version": "0.0.1",
 	"logo": "logo.png",
@@ -25,10 +23,6 @@ hey，开发者，终于和你见面了。
 }
 ```
 #### 字段说明
-
-`pluginName` : 插件名称，它会在 uTools 的很多地方出现
-
-`description` : 插件描述，简洁的说明这个插件的作用
 
 `main` : 入口文件，如果没有定义入口文件，此插件将变成一个[模版插件](template.html)
 
@@ -56,17 +50,19 @@ hello world
 ## 开发者中心
 好了，一个 hello world 插件已经开发好了，我们让它集成到 uTools 中。
 
-1. 复制`plugin.json`文件，呼出 uTools，选择「创建一个 uTools 插件」，uTools 会自动开启`开发者`标签，并提供相应的管理功能。
-![create.png](../assets/create.png)
-![manage.png](../assets/manage.png)
+1. 安装 「uTools 开发者工具」，新建一个项目，并选择刚刚创建的 `plugin.json` 文件。
+![create.png](../assets/developer.png)
 
-2. 点击 启用 图标，退出插件中心，在 uTools 中输入`hello`， `你好`，`nh` 均可以到达你的插件
-![open.png](../assets/open.png)
-![hello.png](../assets/hello.png)
+2. 点击 开启运行。
 
-3. 当你已经实现了插件所需的功能，通过「开发者」管理界面，点击「打包成 uTools 插件」，就可以获得一个打包好的 `.upx` 文件，复制或拖入 uTools 主输入框中即可以进行安装。
-![AslhIx.png](../assets/install.png)
+  ![manage.png](../assets/developer2.png)
 
+3. 退出开发者工具，在 uTools 中输入`hello`， `你好`，`nh` 均可以到达你的插件
+  ![open.png](../assets/open.png)
+  ![hello.png](../assets/hello.png)
 
+4. 当你已经实现了插件所需的功能，通过「开发者工具」管理界面，点击「打包」，就可以获得一个打包好的 `.upx` 文件，复制或拖入 uTools 主输入框中即可以进行安装。
+  ![AslhIx.png](../assets/install.png)
 
+5. 如果你想与其他用户分享你的插件，可以选择「插件发布」将插件提交给 uTools，审核通过后用户可在插件市场中下载安装。「开发者工具」还提供了支付能力、数据统计、错误分析等功能，供你使用。
 

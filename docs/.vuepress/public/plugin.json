@@ -1,18 +1,11 @@
 {
-  "pluginName": "插件名称",
-  "version": "0.0.1",
-  "description": "插件描述",
-  "author": "开发者",
-  "homepage": "https://u.tools",
+
   "main": "index.html",
   "preload": "preload.js",
   "logo": "logo.png",
   "platform": ["win32", "darwin", "linux"],
   "development": {
-    "main": "",
-    "preload": "",
-    "logo": "",
-    "buildPath": ""
+    "main": ""
   },
   "pluginSetting": {
     "single": true,

@@ -2,14 +2,14 @@
 
 ## 基本配置
 
-### `pluginName`
+### `main`
 
 - 类型： `String`
 
-插件名称，它会在 uTools 的很多地方出现。此为`必选项`，长度不能超过 20 个字符。
+入口文件，当该配置为空时，表示插件为[模板插件](./template.html)。 `main` 与 `preload` 至少存在其一
 
 ```json
-"pluginName": "插件名称"
+"main": "index.html"
 ```
 
 ### `version`
@@ -22,45 +22,7 @@
 "version": "0.0.1"
 ```
 
-### `description`
 
-- 类型： `String`
-
-插件描述，简洁的说明这个插件的作用
-
-```json
-"description": "插件描述"
-```
-
-### `author`
-
-- 类型： `String`
-
-开发者名称，将在 uTools 对应的位置显示
-
-```json
-"author": "开发者"
-```
-
-### `homepage`
-
-- 类型： `String`
-
-开发者主页，此为`可选项`，如果配置了此项，用户点击`开发者`时，将在浏览器中打开此页面
-
-```json
-"homepage": "https://u.tools"
-```
-
-### `main`
-
-- 类型： `String`
-
-入口文件，当该配置为空时，表示插件为[模板插件](./template.html)。 `main` 与 `preload` 至少存在其一
-
-```json
-"main": "index.html"
-```
 
 ### `preload`
 
@@ -76,7 +38,7 @@
 
 - 类型： `String`
 
-此插件的图标，此为`必选项`，否则打包后将无法安装
+此插件的图标，此为`必选项`
 
 ```json
 "logo": "logo.png"
@@ -99,53 +61,19 @@
 
 - 类型： `Object`
 
-在开发模式下，可使用 `development` 配置覆盖 `main`、`preload`、`logo` 的值，在打包时，此字段会被删除
+在开发模式下，可使用 `development` 配置覆盖 `main`的值，在打包时，此字段会被删除
 
 ### `development.main`
 
 - 类型： `String`
 
-在开发模式下，入口文件可以是 http 协议，可以配合 webpack 等工具，在开发阶段进行热更新
+在开发模式下，入口文件可以是 http 协议，可以配合 webpack 等工具，在开发阶段进行热更新。
+
+> preload.js 代码变更后无法自动热更新，可以将插件设置成「隐藏插件后完全退出」，再次进入插件就可以应用最新的 preload.js 代码
 
 ```json
 "development": {
     "main": "http://127.0.0.1:8000/index.html"
-}
-```
-
-### `development.preload`
-
-- 类型： `String`
-
-开发模式下的 preload 文件，preload 代码变更后无法自动热更新，可以将调试的插件设置成隐藏插件后完全退出，再次进入插件就可以应用最新的 preload.js 代码
-
-```json
-"development": {
-    "preload": "dev_preload.js"
-}
-```
-
-### `development.logo`
-
-- 类型： `String`
-
-开发模式下的插件 logo
-
-```json
-"development": {
-    "logo": "dev_logo.png"
-}
-```
-
-### `development.buildPath`
-
-- 类型： `String`
-
-为开发模式指定打包目录（默认为 plugin.json 所在目录），打包目录下也必须存在完整配置。
-
-```json
-"development": {
-    "buildPath": "dev/"
 }
 ```
 
