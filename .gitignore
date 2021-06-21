@@ -1,0 +1,21 @@
+# system files
+**/.DS_Store
+**/.vscode
+**/.idea
+
+# dependencies
+**/node_modules
+
+# build output
+**/dist
+**/release
+**/coverage
+**/yarn-error.log
+# logs
+**/npm-debug.log
+**/.git
+**/.npmrc
+
+# yarn
+yarn.lock
+
