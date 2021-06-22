@@ -329,29 +329,42 @@ utools.startDrag('/path/to/file')
 ### `createBrowserWindow(url, options, callback)`
 - `url` String
   
-  > 相对路径的html文件 例如: test.html?param=xxx
+  > 相对路径的 html 文件
 - `options` Object
   
   > 与 [Electron API new BrowserWindow](https://www.electronjs.org/docs/api/browser-window#new-browserwindowoptions) 参数一样, 注意: preload 需配置相对位置
 - `callback` Function (可选)
   
   > `url` 加载完成时回调
-- `返回` Integer
+- `返回` Object
   
-  > 返回 webContentsId
+  > 返回 uTools API 构建的 [BrowserWindow](https://www.electronjs.org/docs/api/browser-window) 对象。 *保留了大部分实例方法*
 > 创建浏览器窗口
 #### 示例
 ```js
-const webContentsId = utools.createBrowserWindow('test.html?param=xxxxxx', {
+const ubWindow = utools.createBrowserWindow('test.html', {
+  show: false,
   title: '测试窗口',
-  fullscreen: true,
   webPreferences: {
-    preload: 'test/preload.js'
+    preload: 'preload.js'
   }
 }, () => {
+  // 显示
+  ubWindow.show()
+  // 置顶
+  ubWindow.setAlwaysOnTop(true)
+  // 窗口全屏
+  ubWindow.setFullScreen(true)
   // 向子窗口传递数据
-  require('electron').ipcRenderer.sendTo(webContentsId, 'ping', data)
+  ubWindow.webContents.send('ping')
+  require('electron').ipcRenderer.sendTo(ubWindow.webContents.id, 'ping')
+  // 执行脚本
+  ubWindow.executeJavaScript('fetch("https://jsonplaceholder.typicode.com/users/1").then(resp => resp.json())')
+    .then((result) => {
+      console.log(result) // Will be the JSON object from the fetch call
+    })
 })
+console.log(ubWindow)
 ```
 
 ```js
@@ -608,6 +621,15 @@ utools.copyImage('data:image/png;base64,xxxxxxxxx')
 #### 示例
 ```js
 utools.copyText('Hi, uTools')
+```
+
+### `getCopyedFiles()`
+- `返回` Array
+> 获取复制的文件或文件夹
+#### 示例
+```js
+utools.getCopyedFiles()
+// 返回 [{ isFile: true, isDirectory: false, name: 'test.png', path: '/path/to/test.png' }]
 ```
 
 ## 系统
@@ -882,16 +904,10 @@ utools.db.allDocs([
 */
 ```
 
-### `utools.db.putAttachment(docId, attachmentId, rev, attachment, type)`
+### `utools.db.postAttachment(docId, attachment, type)`
 - `docId` String
 
-  > 文档 ID 
-- `attachmentId` String
-
-  > 附件 ID 
-- `rev` String
-
-  > 文档版本
+  > 文档 ID
 - `attachment` Buffer | Uint8Array
 
   > 附件，最大 20M
@@ -899,50 +915,71 @@ utools.db.allDocs([
 
   > 附件类型，比如：image/png, text/plain
 - `返回` Object
-> 存储附件到文档
+> 存储附件到新文档，只能新建存储附件不能用于更新
 ```js
   const testTxtBuffer = require('fs').readFileSync('/path/to/test.txt')
-
-  // 存储附件到新文档
-  utools.db.putAttachment('demo', 'test.txt', null, testTxtBuffer, 'text/plain')
+  utools.db.postAttachment('demo', testTxtBuffer, 'text/plain')
   // 返回 {id: "demo", ok: true, rev: "1-44055137915c41c080fc920a8470e14b"}
-
-  // 存储附件到已存在的文档
-  utools.db.putAttachment('demo', 'test.txt', '1-44055137915c41c080fc920a8470e14b', testTxtBuffer, 'text/plain')
-  // 返回 {id: "demo", ok: true, rev: "2-abdbbc4227884d2fa90e12666f5bdfd0"}
 ```
 
-### `utools.db.getAttachment(docId, attachmentId)`
+### `utools.db.getAttachment(docId)`
 - `docId` String
 
-  > 文档 ID 
-- `attachmentId` String
-
-  > 附件 ID 
+  > 文档 ID
 - `返回` Unit8Array
 > 获取附件
 ```js
-  const data = utools.db.getAttachment('demo', 'text.txt')
-  if (data) {
-    const buffer = Buffer.from(data)
-  }
+  const buf = utools.db.getAttachment('demo')
+  console.log(buf)
 ```
 
-### `utools.db.removeAttachment(docId, attachmentId, rev)`
+### `utools.db.getAttachmentType(docId)`
 - `docId` String
 
   > 文档 ID 
-- `attachmentId` String
-
-  > 附件 ID 
-- `rev` String
-
-  > 文档版本号
-- `返回` Object
-> 删除附件
+- `返回` String
+> 获取附件类型
 ```js
-  const result = utools.db.removeAttachment('demo', 'text.txt', '1-20c9b99681a2454a9fa9566a255823cb')
-  console.log(result)
+  utools.db.getAttachmentType('demo')
+  // 返回 'text/plain'
+```
+
+## 本地数据库之 dbStorage
+
+在 db api 基础上封装的值键对存储方式
+
+### `utools.db.setItem(key, value)`
+- `key` String 
+  
+  > 键名(同时为文档ID)
+- `value` Any
+  
+  > 键值(任意类型)
+
+> 键值对存储，如果键名存在，则更新其对应的值
+```js
+utools.db.setItem('pai', 3.1415926)
+```
+
+### `utools.db.getItem(key)`
+- `key` String 
+  
+  > 键名(同时为文档ID)
+- `返回` Any
+> 获取键名对应的值
+```js
+utools.db.getItem('pai')
+// 返回 3.1415926
+```
+
+### `utools.db.removeItem(key)`
+- `key` String 
+  
+  > 键名(同时为文档ID)
+
+> 删除键值对(删除文档)
+```js
+utools.db.removeItem('pai')
 ```
 
 ## [ubrowser](./ubrowser.html)
