@@ -438,6 +438,49 @@ utools.removeFeature('code')
 console.log(utools.getUser())
 ```
 
+### `fetchUserServerTemporaryToken()`
+- `返回` Promise
+
+  > Promise<{ token: string, expiredAt: number }>
+> 获取用户服务端临时令牌，第三方插件存在服务端则根据这个 token 绑定第三方用户帐号
+```js
+utools.fetchUserServerTemporaryToken().then((ret) => {
+  console.log(ret)
+})
+```
+
+### `openPayment(options, callback)`
+- `options`
+    - `goodsId` String
+      
+      > 商品ID，在 “uTools 开发者工具” 插件中创建
+    - `outOrderId` String (可选)
+
+      > 第三方服务生成的订单号
+    - `attach` String (可选)
+
+      > 第三方服务附加数据，在查询API和支付通知中原样返回，可作为自定义参数使用
+- `callback`
+  
+  > 支付成功后回调
+> 打开支付
+```js
+utools.openPayment({ goodsId: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' }, () => {
+  // 支付了，继续业务代码
+})
+```
+
+### `fetchUserPayments()`
+- `返回` Promise
+
+  > Promise<{ order_id: string, total_fee: number, body: string, attach: string, goods_id: string, out_order_id: string, paid_at: string }[]>
+> 获取用户支付记录
+```js
+utools.fetchUserPayments().then((ret) => {
+  // 判断如果存在支付记录则继续相关业务
+})
+```
+
 ## 工具
 屏幕取色 & 屏幕截图
 
