@@ -740,7 +740,7 @@ utools.shellBeep()
 > 获取本地 ID
 #### 示例
 ```js
-// 存储本地相关
+// 存储只与当前设备相关的信息
 const nativeId = utools.getNativeId()
 utools.dbStorage.setItem(nativeId + '/key', 'native value')
 ```
@@ -805,7 +805,7 @@ utools.readCurrentFolderPath().then((dir) => {
 ```
 
 ### `readCurrentBrowserUrl()`
-- `返回` String
+- `返回` Promise
 > 读取当前浏览器窗口 URL (linux 不支持)
 
 > MacOS 支持浏览器 Safari、Chrome、Microsoft Edge、Opera、Vivaldi、Brave
