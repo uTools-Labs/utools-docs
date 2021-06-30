@@ -34,9 +34,11 @@ module.exports = {
           '/developer/welcome',
           '/developer/config',
           '/developer/preload',
-          '/developer/ubrowser',
           '/developer/template',
           '/developer/api',
+          '/developer/db',
+          '/developer/ubrowser',
+          '/developer/server-api',
           '/developer/best',
         ]
       }

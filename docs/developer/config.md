@@ -12,18 +12,6 @@
 "main": "index.html"
 ```
 
-### `version`
-
-- 类型： `String`
-
-插件的版本，需要符合 [Semver](https://semver.org/lang/zh-CN/)（语义化版本）规范。一般情况下形如：`主.次.修订`即可。此为`必选项`
-
-```json
-"version": "0.0.1"
-```
-
-
-
 ### `preload`
 
 - 类型： `String`
