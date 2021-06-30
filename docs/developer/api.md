@@ -735,12 +735,14 @@ utools.shellOpenExternal('https://u.tools')
 utools.shellBeep()
 ```
 
-### `getLocalId()`
+### `getNativeId()`
 - `返回` String
-> 获取本地ID
+> 获取本地 ID
 #### 示例
 ```js
-console.log(utools.getLocalId())
+// 存储本地相关
+const nativeId = utools.getNativeId()
+utools.dbStorage.setItem(nativeId + '/key', 'native value')
 ```
 
 ### `getAppVersion()`
@@ -792,24 +794,28 @@ utools.getFileIcon('folder')
 utools.getFileIcon('D:\\test.url')
 ```
 
-### `getCurrentFolderPath()`
-- `返回` String
-> 获取当前文件管理器路径( linux 不支持)，呼出 uTools 前的活动窗口为资源管理器才能获取
+### `readCurrentFolderPath()`
+- `返回` Promise
+> 读取当前文件管理器窗口路径 (linux 不支持)
 #### 示例
 ```js
-console.log(utools.getCurrentFolderPath())
+utools.readCurrentFolderPath().then((dir) => {
+  console.log(dir)
+})
 ```
 
-### `getCurrentBrowserUrl()`
+### `readCurrentBrowserUrl()`
 - `返回` String
-> 获取当前浏览器 URL ( linux 不支持)， 呼出 uTools 前的活动窗口为浏览器才能获取
+> 读取当前浏览器窗口 URL (linux 不支持)
 
 > MacOS 支持浏览器 Safari、Chrome、Microsoft Edge、Opera、Vivaldi、Brave
 
 > Windows 支持浏览器 Chrome、Firefox、Edge、IE、Opera、Brave
 #### 示例
 ```js
-console.log(utools.getCurrentBrowserUrl())
+utools.readCurrentBrowserUrl().then((url) => {
+  console.log(url)
+})
 ```
 
 ### `isMacOs()`
