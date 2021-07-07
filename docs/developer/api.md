@@ -440,6 +440,7 @@ console.log(utools.getUser())
 ```
 
 ### `fetchUserServerTemporaryToken()`
+
 - `返回` Promise
 
   > Promise<{ token: string, expired_at: number }>
@@ -450,14 +451,17 @@ utools.fetchUserServerTemporaryToken().then((ret) => {
 })
 ```
 
+## 支付
+
 ### `openPayment(options, callback)`
+
 - `options`
     - `goodsId` String
       
       > 商品 ID，在 “ uTools 开发者工具” 插件中创建
     - `outOrderId` String  (可选)
 
-      > 第三方服务生成的订单号（6 - 32 字符）
+      > 第三方服务生成的订单号（6 - 64 字符）
     - `attach` String (可选)
 
       > 第三方服务附加数据，在查询API和支付通知中原样返回，可作为自定义参数使用（最多 256 字符）

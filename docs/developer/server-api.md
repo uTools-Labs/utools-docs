@@ -38,7 +38,7 @@ utools.fetchUserServerTemporaryToken().then((res) => {
 
 1. 对请求参数按参数名升序排序
 
-2. 对参数内容进行 `url_encode` 编码后，组合成 URL 参数形式的字符串，如：`access_token=aaaaaaa&pluing_id=ccccc&timestamp=1624329435`
+2. 对参数内容进行 `url_encode` 编码后，组合成 URL 参数形式的字符串，如：`access_token=aaaaaaa&plugin_id=ccccc&timestamp=1624329435`
 3. 使用 HMAC 方法对字符串生成带有密钥的哈希值，得到签名
 
 ```php
