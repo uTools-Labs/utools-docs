@@ -1,9 +1,7 @@
 # ubrowser API
-uTools browser 简称 ubrowser，是根据 uTools 的特性，量身打造的一个可编程浏览器。
+uTools browser 简称 ubrowser，是根据 uTools 的特性，量身打造的一个可编程浏览器。利用 ubrowser 可以轻而易举连接一切互联网服务，且与 uTools 完美结合。
 
-这是令我们感到特别兴奋一组 API，因为利用 ubrowser 你可以轻而易举连接一切互联网服务，且与 uTools 完美结合。
-
-ubrowser 拥有优雅的链式调用接口，你可以用口语化的数行代码，实现一系列匪夷所思的操作。例如：
+ubrowser 拥有优雅的链式调用接口，可以用口语化的数行代码，实现一系列匪夷所思的操作。例如：
 
 1、自动化测试（自动打开页面、点击、判断，彻底解放测试人员。）
 
@@ -77,7 +75,6 @@ utools.ubrowser.goto('https://cn.bing.com')
 
 ### `screenshot(arg, savePath)`
 - `arg` String | Object (可选)
-  
 > String - 要截取的 DOM 元素
 
 > Object - 截图位置和大小 { x: Integer, y: Integer, width: Integer, height: Integer }
@@ -284,3 +281,49 @@ utools.ubrowser.goto('https://cn.bing.com')
 
 - `返回` Promise
 > 启动一个 ubrowser 运行
+
+## ubrowser 管理
+
+### `getIdleUBrowsers()`
+
+- `返回` Array
+
+> 获取闲置的 ubrowser
+
+#### 示例
+
+```js
+console.log(utools.getIdleUBrowsers())
+// [{ id: number, title: string, url: string }]
+```
+
+### `setUBrowserProxy(config)`
+
+- `config` Object
+
+  > 与 [Electron API](https://www.electronjs.org/docs/api/session#sessetproxyconfig) 一致
+
+- `返回` Boolean
+
+> 设置 ubrowser 代理
+
+#### 示例
+
+```js
+utools.setUBrowserProxy({
+  proxyRules: 'http=foopy:80;ftp=foopy2'
+})
+```
+
+### `clearUBrowserCache()`
+
+- `返回` Boolean
+
+> 清空 ubrowser 缓存
+
+#### 示例
+
+```js
+utools.clearUBrowserCache()
+```
+
