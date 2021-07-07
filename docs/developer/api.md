@@ -27,13 +27,10 @@ utools.onPluginReady(() => {
     - `payload` String | Object | Array
       
       > feature.cmd.type 对应匹配的数据
-    - `optional` Array | undefined
-      
-      > 存在多个匹配时的可选匹配类型和数据 [{ type, payload }]
 > 每当插件从后台进入到前台时，uTools 将会主动调用这个方法。
 #### 示例
 ```js
-utools.onPluginEnter(({code, type, payload, optional}) => {
+utools.onPluginEnter(({code, type, payload}) => {
   console.log('用户进入插件', code, type, payload)
 })
 
