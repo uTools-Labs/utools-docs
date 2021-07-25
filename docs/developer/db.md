@@ -202,7 +202,7 @@ utools.db.allDocs([
 
 在 本地数据库 api 基础上封装的值键对存储方式，供快速使用。
 
-### `utools.db.setItem(key, value)`
+### `utools.dbStorage.setItem(key, value)`
 
 - `key` String 
 
@@ -215,10 +215,10 @@ utools.db.allDocs([
 > 键值对存储，如果键名存在，则更新其对应的值
 
 ```js
-utools.db.setItem('pai', 3.1415926)
+utools.dbStorage.setItem('pai', 3.1415926)
 ```
 
-### `utools.db.getItem(key)`
+### `utools.dbStorage.getItem(key)`
 
 - `key` String 
 
@@ -229,11 +229,11 @@ utools.db.setItem('pai', 3.1415926)
 > 获取键名对应的值
 
 ```js
-utools.db.getItem('pai')
+utools.dbStorage.getItem('pai')
 // 返回 3.1415926
 ```
 
-### `utools.db.removeItem(key)`
+### `utools.dbStorage.removeItem(key)`
 
 - `key` String 
 
@@ -242,5 +242,5 @@ utools.db.getItem('pai')
 > 删除键值对(删除文档)
 
 ```js
-utools.db.removeItem('pai')
+utools.dbStorage.removeItem('pai')
 ```

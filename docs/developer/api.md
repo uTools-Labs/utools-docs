@@ -588,7 +588,7 @@ utools.simulateMouseRightClick(100，100)
 utools.simulateMouseDoubleClick(100，100)
 ```
 
-##  屏幕
+## 屏幕
 
 ### `getCursorScreenPoint()`
 - `返回` Object
