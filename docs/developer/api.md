@@ -140,9 +140,9 @@ utools.setExpendHeight(100)
 - `返回` Boolean
 > 设置子输入框，进入插件后，原本 uTools 的搜索条主输入框将会变成子输入框，子输入框可以为插件所使用。  
 
-![main.png](../assets/main.png)
+![main.png](https://res.u-tools.cn/website/main.png)
 <p align="center">主输入框</p>
-![main.png](../assets/subInput.png)
+![main.png](https://res.u-tools.cn/website/subInput.png)
 <p align="center">子输入框</p>
 #### 示例
 ```js

@@ -48,18 +48,18 @@ hello world
 好了，一个 hello world 插件已经开发好了，我们让它集成到 uTools 中。
 
 1. 安装 「uTools 开发者工具」，新建一个项目，并选择刚刚创建的 `plugin.json` 文件。
-![create.png](../assets/developer.png)
+![create.png](https://res.u-tools.cn/website/developer.png)
 
 2. 点击 开启运行。
 
-  ![manage.png](../assets/developer2.png)
+  ![manage.png](https://res.u-tools.cn/website/developer2.png)
 
 3. 退出开发者工具，在 uTools 中输入`hello`， `你好`，`nh` 均可以到达你的插件
-  ![open.png](../assets/open.png)
-  ![hello.png](../assets/hello.png)
+    ![open.png](https://res.u-tools.cn/website/open.png)
+    ![hello.png](https://res.u-tools.cn/website/hello.png)
 
 4. 当你已经实现了插件所需的功能，通过「开发者工具」管理界面，点击「打包」，就可以获得一个打包好的 `.upx` 文件，复制或拖入 uTools 主输入框中即可以进行安装。
-  ![AslhIx.png](../assets/install.png)
+    ![AslhIx.png](https://res.u-tools.cn/website/install.png)
 
 5. 如果你想与其他用户分享你的插件，可以选择「插件发布」将插件提交给 uTools，审核通过后用户可在插件市场中下载安装。「开发者工具」还提供了支付能力、数据统计、错误分析等功能，供你使用。
 

@@ -1,6 +1,6 @@
 # 介绍
 
-![utools.png](../assets/utools.png)
+![utools.png](https://res.u-tools.cn/website/utools.png)
 
 ## uTools 是什么？
 
@@ -11,6 +11,10 @@ uTools 是一个极简、插件化的现代桌面软件，通过自由选配丰�
 通过快捷键（默认 `alt + space` ）就可以快速呼出这个搜索框。你可以往输入框内粘贴文本、图片、截图、文件、文件夹等等，能够处理此内容的插件也早已准备就绪，统一的设计风格和操作方式，助你高效的得到结果。
 
 一旦你熟悉它后，能够为你节约大量时间，即用即走、不中断、无干扰，让你可以更加专注地改变世界。
+
+> 观看 uTools 的介绍视频
+
+[![dd](https://res.u-tools.cn/images/play.png)](https://www.bilibili.com/video/BV1eg411M7TZ?share_source=copy_web)
 
 ## uTools 能做什么？
 
@@ -26,7 +30,7 @@ uTools 是一个极简、插件化的现代桌面软件，通过自由选配丰�
 
 输入 `插件市场` 进入插件管理，你就可以根据自己的需求挑选安装，组合成自己最称手的工具集合，为各种日常操作提供便利，不断产生的新插件，也将为你带来无限可能。
 
-<img src="../assets/plugin1.png" alt="plugin" style="zoom:50%;" />
+<img src="https://res.u-tools.cn/website/plugin1.png" alt="plugin" style="zoom:50%;" />
 
 ## 超级面板
 
@@ -34,7 +38,7 @@ uTools 是一个极简、插件化的现代桌面软件，通过自由选配丰�
 
 > 针对英文，还提供单词词典和整句翻译功能。
 
-<img src="../assets/translate.jpg" alt="superPanel" style="zoom:50%;" />
+<img src="https://res.u-tools.cn/website/translate.jpg" alt="superPanel" style="zoom:50%;" />
 
 ## uTools 和 「猿料」 是什么关系？
 
@@ -46,14 +50,14 @@ uTools 一开始叫做猿料，意思是：程序员需要的材料/工具。
 
 ## 联系方式
 
-[![](https://img.shields.io/badge/微博-uTools-47b784.svg)](https://weibo.com/p/1005056859563493/home)[![](https://img.shields.io/badge/Email-tellme@u.tools-47b784.svg)](mailto://tellme@u.tools)
-
 猿料社区：[https://yuanliao.info](https://yuanliao.info)
 > 任何 bug 、建议、想法，欢迎在社区发布，以便我们有针对性的回复及整理
 
+邮箱：[service@u.tools](mailto:service@u.tools)
+
 微信群 (群人数限制，将邀请你加入群聊)：
 
-![dev](https://res.u-tools.cn/plugins/upload/qun.png)
+<img src="https://res.u-tools.cn/plugins/upload/qun.png" alt="dev" style="zoom:50%;" />
 
 欢迎关注「猿料」公众号（插件推荐、开发故事）：
 

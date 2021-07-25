@@ -29,7 +29,6 @@ module.exports = {
         ]
       }, {
         title: '插件开发',
-        collapsable: false,
         children: [
           '/developer/welcome',
           '/developer/config',

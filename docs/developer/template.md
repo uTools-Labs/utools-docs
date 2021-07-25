@@ -116,4 +116,4 @@ window.exports = {
 
 ## UI 展示
 
-![docs.png](../assets/docs.png)
+![docs.png](https://res.u-tools.cn/website/docs.png)

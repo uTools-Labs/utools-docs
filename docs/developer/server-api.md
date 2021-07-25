@@ -1,3 +1,5 @@
+
+
 # uTools Server API
 
 通过 uTools 的服务端 API，可以将你的应用和 uTools 用户关联，实现帐号互通、接收支付通知、查询用户支付记录等，为保护密钥安全，请仅在服务端调用接口。
@@ -235,6 +237,8 @@ HTTP 状态码说明
     "message": "ZyxrbSpWBH360pSWG0ueYI3rKSWXMcic"
 }
 ```
+
+> 返回内容为goods_id，可在 [openPayment](api.html#openpayment-options-callback) 中使用
 
 HTTP 状态码说明
 

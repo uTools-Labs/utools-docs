@@ -19,7 +19,7 @@ uTools 插件都自带图形界面，或许有些时候你希望长时间使用�
 uTools 已经可以快速的辅助你解决一些小场景的问题，但是在使用很频繁的一些场景，合理的使用全局快捷键可以一键直达，快上加快。
 
 首先，你需要在「 setting 」中配置全局快捷键，事例如下图：
-<img src="../assets/shortcuts.png" alt="setting.png" style="zoom:50%;" />
+<img src="https://res.u-tools.cn/website/shortcuts.png" alt="setting.png" style="zoom:50%;" />
 
 * 设置 `F1 ` 为「百度」功能，按 `F1` 将打开插件，如果启用『自动复制』，将自动打开浏览器搜索当前选中的内容。
 * 设置 `F2` 为「翻译」功能，当复制一段文本后，在5秒内按 `F2` 直接翻译复制的文本。
