@@ -8,6 +8,6 @@
   },
   "author": "",
   "devDependencies": {
-    "vuepress": "^1.5.2"
+    "vuepress": "^2.0.0"
   }
 }

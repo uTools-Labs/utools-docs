@@ -1,7 +1,7 @@
 module.exports = {
   base: '/docs/',
   title: 'uTools',
-  description: 'uTools是一个极简、插件化、跨平台的现代化桌面软件。通过自由选配丰富的插件，打造你得心应手的工具集合。',
+  description: 'uTools是一个极简、插件化、跨平台的现代化桌面软件。通过自由选配丰富的插件，打造你得心应手的工具平台。',
   head: [
     ['script', {}, `
     var _hmt = _hmt || [];
