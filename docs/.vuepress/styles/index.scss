@@ -1,0 +1,24 @@
+:root {
+    --c-brand: #d1634b;//#c85554;
+    --c-brand-light: #d1634b;
+    @media (min-width: 1800px) {
+    --navbar-padding-h: 20rem;
+    }
+}
+.search-box {
+    --search-input-width: 15rem;
+
+}
+.site-name {
+    display: none;
+}
+@media (min-width: 1800px) {
+    .sidebar {
+        margin: 0 0 0 20rem;
+    }
+}
+
+html.dark {
+    --c-brand: #f8c555;//#c85554;
+    --c-brand-light: #d1634b; 
+}

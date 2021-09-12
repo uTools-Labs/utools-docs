@@ -1,13 +1,15 @@
 {
-  "name": "docs",
+  "name": "uTools",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "uTools是一个极简、插件化、跨平台的现代化桌面软件",
   "scripts": {
-    "dev": "vuepress dev docs",
-    "build": "vuepress build docs"
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
   },
-  "author": "",
+  "main": "index.js",
+  "license": "MIT",
   "devDependencies": {
-    "vuepress": "^2.0.0"
+    "@vuepress/plugin-search": "^2.0.0-beta.25",
+    "vuepress": "^2.0.0-beta.25"
   }
 }

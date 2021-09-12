@@ -1,5 +1,6 @@
 module.exports = {
   base: '/docs/',
+  lang: 'zh',
   title: 'uTools',
   description: 'uTools是一个极简、插件化、跨平台的现代化桌面软件。通过自由选配丰富的插件，打造你得心应手的工具平台。',
   head: [
@@ -13,34 +14,59 @@ module.exports = {
     })();
 `]
   ],
-  themeConfig: {
-    // displayAllHeaders: true,
-    nav: [
-      { text: '官网', link: 'https://u.tools' },
-      { text: '社区', link: 'https://yuanliao.info' }
-    ],
-    sidebar: [
+  plugins: [
+    [
+      '@vuepress/plugin-search',
       {
-        title: '指南',
-        children: [
-          '/guide/about-uTools',
-          '/guide/skills',
-          '/guide/faq'
-        ]
-      }, {
-        title: '插件开发',
-        children: [
-          '/developer/welcome',
-          '/developer/config',
-          '/developer/preload',
-          '/developer/template',
-          '/developer/api',
-          '/developer/db',
-          '/developer/ubrowser',
-          '/developer/server-api',
-          '/developer/best',
-        ]
+        locales: {
+          '/': {
+            placeholder: '搜索, 快捷键 「s」',
+          }
+        }
       }
     ]
+  ],
+  themeConfig: {
+    // displayAllHeaders: true,
+    logoDark: "https://res.u-tools.cn/website/white.png",
+    logo: "https://res.u-tools.cn/website/logo.png",
+    lastUpdated: false,
+    contributors: false,
+    sidebarDepth: 1,
+    home: '/../',
+    navbar: [
+      { text: '使用指南', link: '/guide/about-uTools', 'activeMatch': '/guide/' },
+      { text: '插件开发', link: '/developer/welcome', 'activeMatch': '/developer/' },
+      { text: '社区', link: 'https://yuanliao.info' }
+    ],
+    sidebar: {
+      '/guide/': [
+        {
+          'text': '用户指南',
+          'children': [
+            '/guide/about-uTools',
+            '/guide/skills',
+            '/guide/faq'
+          ]
+        },
+
+      ],
+       '/developer/': [
+        {
+          'text': '插件开发',
+          children: [
+            '/developer/welcome',
+            '/developer/config',
+            '/developer/preload',
+            '/developer/template',
+            '/developer/api',
+            '/developer/db',
+            '/developer/ubrowser',
+            '/developer/server-api',
+            '/developer/best',
+          ]
+        }
+       ]
+    }
   }
 }
