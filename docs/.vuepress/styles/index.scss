@@ -17,8 +17,29 @@
         margin: 0 0 0 20rem;
     }
 }
-
+.sidebar-sub-items .sidebar-item:not(.sidebar-heading){
+    padding: .25rem 1rem .25rem 2.5rem;
+}
 html.dark {
     --c-brand: #f8c555;//#c85554;
     --c-brand-light: #d1634b; 
+}
+h3 {
+    border-bottom: 1px solid var(--c-border);
+    font-size: 1.6rem;
+    padding-bottom: .3rem;
+}
+table:nth-of-type(1), table:nth-of-type(2) {
+    display:table;
+    width:100%;
+}
+video{
+    width: 100%;
+}
+iframe {
+    width: 100%;
+    height: 500px;
+    border: 0;
+}
+* {
 }

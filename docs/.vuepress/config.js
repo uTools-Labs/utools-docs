@@ -33,10 +33,11 @@ module.exports = {
     lastUpdated: false,
     contributors: false,
     sidebarDepth: 1,
-    home: '/../',
+    home: '/guide/about-uTools.html',
     navbar: [
       { text: '使用指南', link: '/guide/about-uTools', 'activeMatch': '/guide/' },
       { text: '插件开发', link: '/developer/welcome', 'activeMatch': '/developer/' },
+      { text: 'uTools 官网', link: 'https://u.tools' },
       { text: '社区', link: 'https://yuanliao.info' }
     ],
     sidebar: {
@@ -46,9 +47,12 @@ module.exports = {
           'children': [
             '/guide/about-uTools',
             '/guide/skills',
-            '/guide/faq'
+            '/guide/share',
+            '/guide/ppt',
+            '/guide/enterprise',
+            '/guide/faq',
           ]
-        },
+        }
 
       ],
        '/developer/': [
