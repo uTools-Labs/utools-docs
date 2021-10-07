@@ -152,7 +152,7 @@ utools.db.allDocs([
 
 - `attachment` Buffer | Uint8Array
 
-  > 附件，最大 20M
+  > 附件，最大 10M
 
 - `type` String
 
@@ -160,7 +160,7 @@ utools.db.allDocs([
 
 - `返回` Object
 
-> 存储附件到新文档，只能新建存储附件不能用于更新，附件最大不超过 20M
+> 存储附件到新文档，只能新建存储附件不能用于更新，附件最大不超过 10M
 
 ```js
   const testTxtBuffer = require('fs').readFileSync('/path/to/test.txt')

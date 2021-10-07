@@ -269,25 +269,6 @@ utools.showSaveDialog({
 })
 ```
 
-### `showMessageBox(options)`
-- `options` Object
-  
-  > 与 [Electron API dialog.showMessageBoxSync](https://www.electronjs.org/docs/api/dialog#dialogshowmessageboxsyncbrowserwindow-options) options 一致
-- `返回` Integer
-  
-  > 返回点击按钮的索引
-> 弹出消息框
-#### 示例
-```js
-utools.showMessageBox({
-  type: 'question',
-  buttons: ['取消', '关机'],
-  title: '关机确认',
-  message: '电脑确定要关机?',
-  defaultId: 1
-})
-```
-
 ### `findInPage(text, options)`
 - `text` String
   
@@ -817,6 +798,15 @@ utools.readCurrentFolderPath().then((dir) => {
 utools.readCurrentBrowserUrl().then((url) => {
   console.log(url)
 })
+```
+
+### `isDev()`
+> 判断插件是否在开发环境
+#### 示例
+```js
+if (utools.isDev()) {
+  console.log('coding')
+}
 ```
 
 ### `isMacOs()`
