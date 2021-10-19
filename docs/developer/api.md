@@ -142,9 +142,15 @@ utools.setExpendHeight(100)
 
 ![main.png](https://res.u-tools.cn/website/main.png)
 <p align="center">主输入框</p>
+
+
 ![main.png](https://res.u-tools.cn/website/subInput.png)
+
 <p align="center">子输入框</p>
+
+
 #### 示例
+
 ```js
 utools.setSubInput(({ text }) => {
   console.log(text)
