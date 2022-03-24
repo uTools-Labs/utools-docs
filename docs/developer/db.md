@@ -10,24 +10,32 @@ uTools 的很多插件就像是一个轻型的应用程序，总是会碰到一�
 
 ## 本地数据库
 
-
 ### `utools.db.put(doc)`
 
 - `doc` Object  
 - `返回` Object
 
 > 执行该方法将会创建或更新数据库文档，文档内容不超过 1M
+>
+> 异步方式：`utools.db.promises.put(doc)` 
 
 ```js
-// 创建请求
+// 创建
 utools.db.put({
   _id: "demo",
   data: "demo"
 })
 // 返回 {id: "demo", ok: true, rev: "1-05c9b92e6f24287dc1f4ec79d9a34fa8"}
 
-// 更新请求
+// 更新
 utools.db.put({
+  _id: "demo",
+  data: "demo",
+  _rev: "1-05c9b92e6f24287dc1f4ec79d9a34fa8"
+})
+
+// 异步方式更新
+utools.db.promises.put({
   _id: "demo",
   data: "demo",
   _rev: "1-05c9b92e6f24287dc1f4ec79d9a34fa8"
@@ -38,25 +46,6 @@ utools.db.put({
 
 另外需要注意，每次更新时都要传入完整的文档数据，无法对单个字段进行更新。
 
-::: danger 注意
-在 uTools 的生命周期里， `onPluginReady` **事件回调执行前无法操作所有和数据库相关的操作**，如果在 `onPluginReady` 执行完成前调用了数据库相关的 API，代码将会抛出一个异常
-
-```
-Uncaught Error: called after onPluginReady event
-    at Object.get (/Applications/uTools.app/Contents/Resources/app.asar/dist/apisdk.js:273)
-    at window.get (/Users/lanyuanxiaoyao/Project/squirrel-old/utools-server/dist/preload.js:160)
-    at Xi.fetch (app.82c75e58.js:8)
-    at lo.Ze (app.82c75e58.js:8)
-    at new lo (app.82c75e58.js:8)
-    at app.82c75e58.js:8
-    at Object.<anonymous> (app.82c75e58.js:8)
-    at n (app.82c75e58.js:1)
-    at Object.<anonymous> (app.82c75e58.js:8)
-    at n (app.82c75e58.js:1)
-```
-
-建议将数据库初始化的操作放在 `onPluginReady` 函数内。
-:::
 
 ### `utools.db.get(id)`
 
@@ -64,6 +53,8 @@ Uncaught Error: called after onPluginReady event
 - `返回` Object
 
 > 执行该方法将会根据文档 ID 获取数据
+>
+> 异步方式：`utools.db.promises.get(id)` 
 
 ```js
 utools.db.get("demo")
@@ -76,6 +67,8 @@ utools.db.get("demo")
 - `返回` Object
 
 > 执行该方法将会删除数据库文档，可以传入文档对象或文档 id 进行操作。
+>
+> 异步方式：`utools.db.promises.remove(doc)`
 
 ```js
 utools.db.remove("demo")
@@ -88,6 +81,8 @@ utools.db.remove("demo")
 - `返回` Array
 
 > 执行该方法将会批量更新数据库文档，传入需要更改的文档对象合并成数组进行批量更新。
+>
+> 异步方式：`utools.db.promises.bulkDocs(docs)`
 
 ```js
 utools.db.bulkDocs([{
@@ -114,10 +109,14 @@ utools.db.bulkDocs([{
 - `返回` Array
 
 > 执行该方法将会获取所有数据库文档，如果传入字符串，则会返回以字符串开头的文档，也可以传入指定 ID 的数组，不传入则为获取所有文档。
+>
+> 异步方式：`utools.db.promises.allDocs(key)`
 
 ```js
-// 获取所有文档
-utools.db.allDocs()
+// 异步方式获取所有文档
+utools.db.promises.allDocs().then(docs => {
+  console.log(docs)
+})
 
 // 传入字符串，则返回id以 demo 开头的文档
 utools.db.allDocs("demo")
@@ -161,6 +160,8 @@ utools.db.allDocs([
 - `返回` Object
 
 > 存储附件到新文档，只能新建存储附件不能用于更新，附件最大不超过 10M
+>
+> 异步方式：`utools.db.promises.postAttachment(docId, attachment, type)`
 
 ```js
   const testTxtBuffer = require('fs').readFileSync('/path/to/test.txt')
@@ -177,6 +178,8 @@ utools.db.allDocs([
 - `返回` Unit8Array
 
 > 获取附件
+>
+> 异步方式：`utools.db.promises.getAttachment(docId)`
 
 ```js
   const buf = utools.db.getAttachment('demo')
@@ -192,6 +195,8 @@ utools.db.allDocs([
 - `返回` String
 
 > 获取附件类型
+>
+> 异步方式：`utools.db.promises.getAttachmentType(docId)`
 
 ```js
   utools.db.getAttachmentType('demo')

@@ -29,21 +29,15 @@ utools.ubrowser.goto('https://cn.bing.com')
 - `userAgent` String
 > 设置 User-Agent
 
-### `goto(url, headers)`
+### `goto(url, headers, timeout)`
 - `url` String
 - `headers` Object (可选)
   
   > { Referer: string, userAgent: string }
-> 前往
+- `timeout` Integer (可选)
 
-### `goto(mdText, title)`
-- `mdText` String
-  
-  > Markdown 文本
-- `title` String (可选)
-  
-  > 窗口标题
-> Markdown 转 Html 并显示
+  > 超时 默认 60000 ms
+> 前往
 
 ### `viewport(width, height)`
 - `width` Integer
@@ -162,7 +156,7 @@ utools.ubrowser.goto('https://cn.bing.com')
   > DOM 元素
 - `timeout` Integer (可选)
   
-  > 超时 默认 10000 ms
+  > 超时 默认 60000 ms
 > 等待 DOM 元素出现
 
 ### `wait(func, timeout，...params)`
@@ -171,7 +165,7 @@ utools.ubrowser.goto('https://cn.bing.com')
   > 在网页内执行的函数，返回 true 结束等待
 - `timeout` Integer (可选)
   
-  > 超时 默认 10000 ms
+  > 超时 默认 60000 ms
 - `param` Any (可选)
   
   > 传递给 func 的参数

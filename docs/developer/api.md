@@ -5,16 +5,6 @@
 ## 事件
 你可以根据需要，事先定义好一些回调函数，uTools 会在事件产生时主动调用它们。
 
-### `onPluginReady(callback)`
-- `callback` Function  
-> 当插件装载成功，uTools 将会主动调用这个方法（生命周期内仅调用一次），所有的 api 都应该在 onPluginReady 之后进行调用。
-#### 示例
-```js
-utools.onPluginReady(() => {
-  console.log('插件装配完成，已准备好')
-})
-```
-
 ### `onPluginEnter(callback)`
 - `callback` Function  
   - `Object`
