@@ -203,6 +203,20 @@ utools.db.allDocs([
   // 返回 'text/plain'
 ```
 
+### `utools.db.replicateStateFromCloud()`
+
+- `返回` null | 0 | 1
+
+> 云端复制数据状态 (null: 未开启数据同步、0: 已完成复制、1：复制中)
+>
+> 异步方式：`utools.db.promises.replicateStateFromCloud()`
+
+```js
+  if (utools.db.replicateStateFromCloud()) {
+    console.log('数据可能不完整，还在从云端复制中')
+  }
+```
+
 ## dbStorage
 
 在 本地数据库 api 基础上封装的值键对存储方式，供快速使用。
