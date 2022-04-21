@@ -624,6 +624,34 @@ const display = utools.getDisplayMatching({x: 100, y: 100, width: 200, height: 2
 console.log(display)
 ```
 
+### `desktopCaptureSources(options)`
+- `options` Object
+- `返回` Promise
+  
+> 录屏源 [参考 Electron API desktopCapturer getSources](https://www.electronjs.org/zh/docs/latest/api/desktop-capturer)
+#### 示例
+```js
+(async () => {
+  const ousrces = await utools.desktopCaptureSources({ types: ['window', 'screen'] })
+  const stream = await navigator.mediaDevices.getUserMedia({
+    audio: false,
+    video: {
+      mandatory: {
+        chromeMediaSource: 'desktop',
+        chromeMediaSourceId: ousrces[0].id,
+        minWidth: 1280,
+        maxWidth: 1280,
+        minHeight: 720,
+        maxHeight: 720
+      }
+    }
+  })
+  const video = document.querySelector('video')
+  video.srcObject = stream
+  video.onloadedmetadata = (e) => video.play()
+})()
+```
+
 ## 复制
 
 ### `copyFile(file)`
