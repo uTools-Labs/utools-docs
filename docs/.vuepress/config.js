@@ -67,6 +67,7 @@ module.exports = {
             '/developer/db',
             '/developer/ubrowser',
             '/developer/server-api',
+            '/developer/payment',
             '/developer/best',
           ]
         }
