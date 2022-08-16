@@ -1,6 +1,6 @@
 # uTools API
 
-在插件初始化完成时，uTools 会自动在你的 window 对象上挂载 utools 对象，它将提供一些特有的 api，使你的插件能够更好的与uTools 主窗口沟通，并获得一些有意义的底层能力。
+在插件应用初始化完成时，uTools 会自动在你的 window 对象上挂载 utools 对象。
 
 ## 事件
 你可以根据需要，事先定义好一些回调函数，uTools 会在事件产生时主动调用它们。
@@ -17,11 +17,11 @@
     - `payload` String | Object | Array
       
       > feature.cmd.type 对应匹配的数据
-> 每当插件从后台进入到前台时，uTools 将会主动调用这个方法。
+> 进入插件应用时，uTools 将会主动调用这个方法。
 #### 示例
 ```js
 utools.onPluginEnter(({code, type, payload}) => {
-  console.log('用户进入插件', code, type, payload)
+  console.log('用户进入插件应用', code, type, payload)
 })
 
 /* 
@@ -52,33 +52,40 @@ type 为 "window" 时， payload 值示例
 type 为 "img" 时， payload 值示例
 data:image/png;base64,...
 
-type 为 "text"、"regex"、 "over" 时， payload 值为进入插件时的主输入框文本
+type 为 "text"、"regex"、 "over" 时， payload 值为进入插件应用时的主输入框文本
 */
 ```
 
 ### `onPluginOut(callback)`
-- `callback` Function  
-> 每当插件从前台进入到后台时，uTools 将会主动调用这个方法。
+- `callback` Function
+  - `processExit` Boolean
+
+    > 是否完全退出插件应用
+> 插件应用退出时，uTools 将会主动调用这个方法。
 #### 示例
 ```js
-utools.onPluginOut(() => {
-  console.log('用户退出插件')
+utools.onPluginOut((processExit) => {
+  if (processExit) {
+    console.log('插件应用完全退出')
+  } else {
+    console.log('插件应用隐藏后台')
+  }
 })
 ```
 
 ### `onPluginDetach(callback)`
 - `callback` Function
-> 用户对插件进行分离操作时，uTools 将会主动调用这个方法。
+> 用户对插件应用进行分离操作时，uTools 将会主动调用这个方法。
 #### 示例
 ```js
 utools.onPluginDetach(() => {
-  console.log('插件被分离')
+  console.log('插件应用已作为系统窗口使用')
 })
 ```
 
 ### `onDbPull(callback)`
 - `callback` Function  
-> 当此插件的数据在其他设备上被更改后同步到此设备时，uTools 将会主动调用这个方法
+> 当此插件应用的数据在其他设备上被更改后同步到此设备时，uTools 将会主动调用这个方法
 #### 示例
 ```js
 utools.onDbPull(() => {
@@ -93,7 +100,7 @@ utools.onDbPull(() => {
   
   > 是否焦点回归到前面的活动窗口，默认 true
 - `返回` Boolean
-> 执行该方法将会隐藏 uTools 主窗口，包括此时正在主窗口运行的插件，分离的插件不会被隐藏。
+> 执行该方法将会隐藏 uTools 主窗口，包括此时正在主窗口运行的插件应用，分离的插件应用不会被隐藏。
 #### 示例
 ```js
 utools.hideMainWindow()
@@ -101,7 +108,7 @@ utools.hideMainWindow()
 
 ### `showMainWindow()`
 - `返回` Boolean
-> 执行该方法将会显示 uTools 主窗口，包括此时正在主窗口运行的插件。
+> 执行该方法将会显示 uTools 主窗口，包括此时正在主窗口运行的插件应用。
 #### 示例
 ```js
 utools.showMainWindow()
@@ -110,7 +117,7 @@ utools.showMainWindow()
 ### `setExpendHeight(height)`
 - `height` Integer  
 - `返回` Boolean
-> 执行该方法将会修改插件窗口的高度。
+> 执行该方法将会修改插件应用窗口的高度。
 #### 示例
 ```js
 utools.setExpendHeight(100)
@@ -128,7 +135,7 @@ utools.setExpendHeight(100)
   
   > 子输入框是否获得焦点，默认 true
 - `返回` Boolean
-> 设置子输入框，进入插件后，原本 uTools 的搜索条主输入框将会变成子输入框，子输入框可以为插件所使用。  
+> 设置子输入框，进入插件应用后，原本 uTools 的搜索条主输入框将会变成子输入框，子输入框可以为插件应用所使用。  
 
 ![main.png](https://res.u-tools.cn/website/main.png)
 <p align="center">主输入框</p>
@@ -149,7 +156,7 @@ utools.setSubInput(({ text }) => {
 
 ### `removeSubInput()`
 - `返回` Boolean
-> 移除已经设置的子输入框，在插件切换到其他页面时可以重新设置子输入框为其所用。
+> 移除已经设置的子输入框，在插件应用切换到其他页面时可以重新设置子输入框为其所用。
 #### 示例
 ```js
 utools.removeSubInput()
@@ -182,7 +189,7 @@ utools.subInputSelect()
 
 ### `subInputBlur()`
 - `返回` Boolean 
-> 子输入框失去焦点，插件获得焦点
+> 子输入框失去焦点，插件应用获得焦点
 #### 示例
 ```js
 utools.subInputBlur()
@@ -190,7 +197,7 @@ utools.subInputBlur()
 
 ### `outPlugin()`
 - `返回` Boolean 
-> 执行该方法将会退出当前插件。（插件进入后台，进程并未结束）
+> 执行该方法将会退出当前插件应用。（插件应用进入后台，进程并未结束）
 #### 示例
 ```js
 utools.outPlugin()
@@ -204,7 +211,7 @@ utools.outPlugin()
   
   > feature.cmd.type 对应的数据
 - `返回` Boolean
-> 该方法可以携带数据，跳转到另一个插件进行处理，如果用户未安装对应的插件，uTools 会弹出提醒并引导进入插件市场下载。
+> 该方法可以携带数据，跳转到另一个插件应用进行处理，如果用户未安装对应的插件应用，uTools 会弹出提醒并引导进入插件应用市场下载。
 #### 示例
 ```js
 //content 为string类型
@@ -272,7 +279,7 @@ utools.showSaveDialog({
 - `options` Object (可选)
   
   > 与 [Electron API contentsfindinpagetext-options](https://www.electronjs.org/docs/api/web-contents#contentsfindinpagetext-options) options 一致
-> 插件页面中查找内容
+> 插件应用页面中查找内容
 #### 示例
 ```js
 utools.findInPage('utools')
@@ -284,7 +291,7 @@ utools.findInPage('utools')
   > "clearSelection" | "keepSelection" | "activateSelection", 默认 "clearSelection"
   >
   > 与 [Electron API contentsstopfindinpageaction](https://www.electronjs.org/docs/api/web-contents#contentsstopfindinpageaction) 一致
-> 停止插件页面中查找
+> 停止插件应用页面中查找
 #### 示例
 ```js
 utools.stopFindInPage()
@@ -361,13 +368,20 @@ utools.onPluginEnter(({code, type, payload}) => {
 ```
 
 ## 动态增减功能
-很多时候，插件中会提供一些功能供用户进行个性化设置（例如：`网页快开`插件），这部分配置无法在 `plugin.json` 事先定义好，所以我们提供了以下方法对插件功能进行动态增减。
+很多时候，插件应用中会提供一些功能供用户进行个性化设置（例如：`网页快开`插件应用），这部分配置无法在 `plugin.json` 事先定义好，所以我们提供了以下方法对插件应用功能进行动态增减。
 
-### `getFeatures()`
+### `getFeatures(codes)`
+- `codes` Array (可选)
+
+  > 为空，获取所有
 - `返回` Array
-> 返回本插件所有动态增加的功能。
+> 获取插件应用动态创建的功能。
 ```js
+// 获取所有动态功能
 const features = utools.getFeatures()
+console.log(features)
+// 获取特定 code
+const features = utools.getFeatures(['code-1', 'code-2'])
 console.log(features)
 ```
 
@@ -381,7 +395,7 @@ console.log(features)
   - `platform` Array (可选)
   - `cmds` Array
 - `返回` Boolean  
-> 为本插件动态新增某个功能。
+> 为本插件应用动态新增某个功能。
 ```js
 utools.setFeature({
   "code": "hosts",
@@ -396,7 +410,7 @@ utools.setFeature({
 ### `removeFeature(code)`
 - `code` String
 - `返回` Boolean
-> 动态删除本插件的某个功能。
+> 动态删除本插件应用的某个功能。
 ```js
 utools.removeFeature('code')
 ```
@@ -432,7 +446,7 @@ utools.fetchUserServerTemporaryToken().then((ret) => {
 - `options`
     - `goodsId` String
       
-      > 商品 ID，在 “ uTools 开发者工具” 插件中创建
+      > 商品 ID，在 “ uTools 开发者工具” 插件应用中创建
     - `outOrderId` String  (可选)
 
       > 第三方服务生成的订单号（6 - 64 字符）
@@ -462,7 +476,7 @@ utools.fetchUserPayments().then((ret) => {
   	    {
         "order_id": "ZsVSwEDoR7PPs6vWdAGplEpEpNjn8xb4", // utools 订单号
         "out_order_id": "", // 外部订单号
-        "open_id": "a331127d654761ac91d086b942aae7b6", uTools 用户 ID, 对于此插件不变且唯一
+        "open_id": "a331127d654761ac91d086b942aae7b6", uTools 用户 ID, 对于此插件应用不变且唯一
         "pay_fee": 1, // 支付金额（分）
         "body": "会员1年", // 支付内容
         "attach": "", // 附加数据
@@ -504,6 +518,17 @@ utools.screenColorPick(({hex, rgb})=>{
 utools.screenCapture(base64Str => {
   utools.redirect('识别图片中文字', { type: 'img', data: base64Str })
 })
+```
+
+### `hideMainWindowTypeString(text)`
+- `text` String
+  
+  > 任意文本包括 Emoji 符号字符
+> 隐藏主窗口键盘输入字符串(输入法原理)，插件应用应用未分离下才能正常执行
+#### 示例
+```js
+// 输入一句文本
+utools.hideMainWindowTypeString('uTools 新一代效率工具平台 - 🐼👏🦄👨‍👩‍👧‍👦🚵🏻')
 ```
 
 ## 模拟
@@ -702,7 +727,7 @@ utools.getCopyedFiles()
 - `body` String
 - `clickFeatureCode` String (可选)
   
-  > plugin.json 配置的 feature.code，点击通知进入插件功能(该 feature.cmds 至少包含一个搜索字符串关键字)
+  > plugin.json 配置的 feature.code，点击通知进入插件应用功能(该 feature.cmds 至少包含一个搜索字符串关键字)
 > 显示系统通知
 #### 示例
 ```js
@@ -825,7 +850,7 @@ utools.readCurrentBrowserUrl().then((url) => {
 ```
 
 ### `isDev()`
-> 判断插件是否在开发环境
+> 判断插件应用是否在开发环境
 #### 示例
 ```js
 if (utools.isDev()) {
@@ -833,11 +858,11 @@ if (utools.isDev()) {
 }
 ```
 
-### `isMacOs()`
+### `isMacOS()`
 > 是否 MacOS 操作系统
 #### 示例
 ```js
-if (utools.isMacOs()) {
+if (utools.isMacOS()) {
   console.log('mac')
 }
 ```
