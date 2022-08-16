@@ -3,7 +3,25 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="generator" content="VuePress 2.0.0-beta.25">
+    <meta name="generator" content="VuePress 2.0.0-beta.36">
+    <style>
+      :root {
+        --c-bg: #fff;
+      }
+      html.dark {
+        --c-bg: #22272e;
+      }
+      html, body {
+        background-color: var(--c-bg);
+      }
+    </style>
+    <script>
+      const userMode = localStorage.getItem('vuepress-color-scheme');
+			const systemDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+			if (userMode === 'dark' || (userMode !== 'light' && systemDarkMode)) {
+				document.documentElement.classList.toggle('dark', true);
+			}
+    </script>
     <script>
     var _hmt = _hmt || [];
     (function() {
@@ -13,11 +31,11 @@
       s.parentNode.insertBefore(hm, s);
     })();
 </script><title>uTools</title><meta name="description" content="uTools是一个极简、插件化、跨平台的现代化桌面软件。通过自由选配丰富的插件，打造你得心应手的工具平台。">
-    <link rel="preload" href="/docs/assets/js/runtime~app.21ee41a0.js" as="script"><link rel="preload" href="/docs/assets/css/styles.fbc0f1d1.css" as="style"><link rel="preload" href="/docs/assets/js/567.99b38430.js" as="script"><link rel="preload" href="/docs/assets/js/app.75c80ff7.js" as="script">
-    <link rel="stylesheet" href="/docs/assets/css/styles.fbc0f1d1.css">
+    <link rel="modulepreload" href="/docs/assets/app.d970ef26.js"><link rel="modulepreload" href="/docs/assets/404.html.4b3b7111.js"><link rel="modulepreload" href="/docs/assets/404.html.bee13de6.js"><link rel="modulepreload" href="/docs/assets/plugin-vue_export-helper.21dcd24c.js">
+    <link rel="stylesheet" href="/docs/assets/style.282211da.css">
   </head>
   <body>
-    <div id="app"><!--[--><div class="theme-container"><div class="theme-default-content"><h1>404</h1><blockquote>Looks like we&#39;ve got some broken links.</blockquote><a href="/docs/guide/about-uTools.html" class="">Take me home</a></div></div><!----><!--]--></div>
-    <script src="/docs/assets/js/runtime~app.21ee41a0.js" defer></script><script src="/docs/assets/js/567.99b38430.js" defer></script><script src="/docs/assets/js/app.75c80ff7.js" defer></script>
+    <div id="app"><!--[--><div class="theme-container"><div class="theme-default-content"><h1>404</h1><blockquote>How did we get here?</blockquote><a href="/docs/guide/about-uTools.html" class="">Take me home</a></div></div><!----><!--]--></div>
+    <script type="module" src="/docs/assets/app.d970ef26.js" defer></script>
   </body>
 </html>
