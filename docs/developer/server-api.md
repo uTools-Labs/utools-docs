@@ -20,7 +20,7 @@
 
 | 参数名       | 是否必填 | 说明                             |
 | :----------- | :------: | :------------------------------- |
-| plugin_id    |    是    | 插件 ID                          |
+| plugin_id    |    是    | 插件应用 ID                          |
 | access_token |    是    | uTools 用户的 access_token       |
 | timestamp    |    是    | 时间戳（秒），误差需小于 10 分钟 |
 | sign         |    是    | 签名                             |
@@ -47,7 +47,7 @@ utools.fetchUserServerTemporaryToken().then((res) => {
 // 以下为 php 代码演示签名过程
 // 参数
 $params = [
-  "plugin_id" => "zueadppw", // 可在开发者插件中获得
+  "plugin_id" => "zueadppw", // 可在开发者插件应用中获得
   "access_token" => "user access_token 32位",
   "timestamp" => "1624329435",
 ];
@@ -60,7 +60,7 @@ ksort($params);
 $str = http_build_query($params);
 
 // 3. 使用 HMAC 方法生成带有密钥的哈希值
-$secret = "your secret 32位"; // secret 在开发者插件中通过重置获取
+$secret = "your secret 32位"; // secret 在开发者插件应用中通过重置获取
 $sign = hash_hmac("sha256", $str, $secret);
 ```
 
@@ -74,7 +74,7 @@ $sign = hash_hmac("sha256", $str, $secret);
         "avatar": "https://res.u-tools.cn/assets/avatars/eZCBIawAkspLw8Xg.png",
         "member": 1, // 是否 uTools 会员（0: 否，1: 是）
         "nickname": "却步.",
-        "open_id": "00a50cd81c37c4e381e8161b2d762158", // uTools 用户 ID, 对于此插件不变且唯一
+        "open_id": "00a50cd81c37c4e381e8161b2d762158", // uTools 用户 ID, 对于此插件应用不变且唯一
         "timestamp": 1624329616,
     },
     "sign": "4dbf21a9d5a0f0e3906a0180522fd6393b4e91f738d57cafddf309afc6c547bb" // 签名算法与 1.3 相同
@@ -110,7 +110,7 @@ HTTP 状态码说明
 
 ## 用户支付成功回调接口
 
-当用户通过 uTools 在你的插件内完成支付，且在开发者工具中配置了回调地址，在收到付款时，会将信息推送到配置的回调地址。
+当用户通过 uTools 在你的插件应用内完成支付，且在开发者工具中配置了回调地址，在收到付款时，会将信息推送到配置的回调地址。
 
 ### 2.1 接口说明
 
@@ -165,7 +165,7 @@ HTTP 状态码说明
 
 | 参数名       | 是否必填 | 说明                             |
 | :----------- | :------: | :------------------------------- |
-| plugin_id    |    是    | 插件ID                           |
+| plugin_id    |    是    | 插件应用ID                           |
 | out_order_id |    是    | 第三方订单号                     |
 | timestamp    |    是    | 时间戳（秒），误差需小于 10 分钟 |
 | sign         |    是    | 签名，与 1.3 签名方法一致        |
@@ -202,7 +202,7 @@ HTTP 状态码说明
 |     400     |           客户端错误           |
 |     401     |     未知用户（sign 错误）      |
 |     403     | 无权限访问（timestamp 已过期） |
-|     404     |           未找到插件           |
+|     404     |           未找到插件应用           |
 |     422     |      请求的参数未通过验证      |
 |     500     |    uTools 暂时无法提供服务     |
 
@@ -222,7 +222,7 @@ HTTP 状态码说明
 
 | 参数名    | 是否必填 | 说明                             |
 | :-------- | :------: | :------------------------------- |
-| plugin_id |    是    | 插件ID                           |
+| plugin_id |    是    | 插件应用ID                           |
 | total_fee |    是    | 商品总金额（分）                 |
 | title     |    是    | 商品名称                         |
 | timestamp |    是    | 时间戳（秒），误差需小于 10 分钟 |
@@ -248,7 +248,7 @@ HTTP 状态码说明
 |     400     |           客户端错误           |
 |     401     |     未知用户（sign 错误）      |
 |     403     | 无权限访问（timestamp 已过期） |
-|     404     |           未找到插件           |
+|     404     |           未找到插件应用           |
 |     422     |      请求的参数未通过验证      |
 |     500     |    uTools 暂时无法提供服务     |
 
