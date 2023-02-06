@@ -16,7 +16,7 @@ uTools 是一个极简、插件化的现代桌面软件，通过自由选配丰�
 
 > 观看 uTools 的介绍视频
 
-[![dd](https://res.u-tools.cn/images/play.png)](https://www.bilibili.com/video/BV1eg411M7TZ?share_source=copy_web)
+[![dd](https://res.u-tools.cn/images/play.png)](https://www.bilibili.com/video/BV1g24y1X77N?share_source=copy_web)
 
 ## uTools 能做什么？
 
@@ -28,7 +28,7 @@ uTools 是一个极简、插件化的现代桌面软件，通过自由选配丰�
 
 现在已有 700+ 的插件供你选择，每个插件解决一个具体场景的问题，简洁美观、即用即走。
 
-输入 `插件应用市场` 进入插件管理，你就可以根据自己的需求挑选安装，组合成自己最称手的工具集合，为各种日常操作提供便利，不断产生的新插件，也将为你带来无限可能。
+输入 `插件应用市场` 进入插件管理，你就可以根据自己的需求挑选安装，组合成自己最称手的工具集合，为各种日常操作提供便利，不断产生的新插件，将为你带来无限可能。
 
 <img src="https://res.u-tools.cn/website/plugin1.png" alt="plugin" style="zoom:50%;" />
 
@@ -44,7 +44,7 @@ uTools 是一个极简、插件化的现代桌面软件，通过自由选配丰�
 
 uTools 一开始叫做猿料，意思是：程序员需要的材料/工具。
 
-当我们开始为猿料寻找域名时，无意间发现了 u.tools ，感觉和我们想做的产品内容、域名、寓意都完美融合，遂改名叫 uTools 。对猿料这个名字依然喜爱，现在作为我们公众号和社区的名称。
+当我们开始为猿料寻找域名时，无意间发现了 u.tools ，感觉和我们想做的产品内容、域名、寓意都完美融合，遂改名叫 uTools 。对猿料这个名字依然喜爱，现在作为我们反馈社区的名称。
 
 > [开发者说 | 为什么开发 uTools ?](https://mp.weixin.qq.com/s/fleBqpkv3w3q_mIBA05XCg)
 

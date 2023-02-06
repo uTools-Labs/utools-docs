@@ -10,11 +10,11 @@
 
 分享会暖场过后，进入正题，可以先播放一下 uTools 的介绍视频，让大家对 uTools 的功能有一个全方位的了解。
 
-<video poster="https://res.u-tools.cn/website/video.png" src="https://res.u-tools.cn/website/utools-H264.mp4" controls="">
+<video poster="https://res.u-tools.cn/website/video.png" src="https://res.u-tools.cn/videos/utools3.mp4" controls="">
       你的浏览器不支持 <code>video</code> 标签.
     </video>
 
-视频下载：[uTools-H264.mp4](https://res.u-tools.cn/website/utools-H264-mp4.zip)
+视频下载：[uTools-H264.mp4](https://res.u-tools.cn/website/utools3.zip)
 
 
 
