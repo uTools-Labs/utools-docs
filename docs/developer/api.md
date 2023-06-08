@@ -267,7 +267,7 @@ utools.showOpenDialog({
 ```js
 utools.showSaveDialog({ 
   title: '保存位置', 
-  defaultPath: utools.getPath('downloads')
+  defaultPath: utools.getPath('downloads'),
   buttonLabel: '保存'
 })
 ```

@@ -57,7 +57,7 @@ uTools 一开始叫做猿料，意思是：程序员需要的材料/工具。
 
 微信群 (群人数限制，将邀请你加入群聊)：
 
-<img src="https://res.u-tools.cn/plugins/upload/qun.png" alt="dev" style="zoom:50%;" />
+<img src="https://res.u-tools.cn/upload/qr-utools.jpg" alt="dev" style="zoom:50%;" />
 
 欢迎关注「猿料」公众号（插件推荐、开发故事）：
 
