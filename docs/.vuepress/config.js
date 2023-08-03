@@ -2,7 +2,7 @@ module.exports = {
   base: '/docs/',
   lang: 'zh',
   title: 'uTools',
-  description: 'uTools是一个极简、插件化、跨平台的现代化桌面软件。通过自由选配丰富的插件，打造你得心应手的工具平台。',
+  description: '新一代效率工具平台，自由组合插件应用，打造专属你的趁手工具集',
   head: [
     ['script', {}, `
     var _hmt = _hmt || [];
@@ -20,7 +20,7 @@ module.exports = {
       {
         locales: {
           '/': {
-            placeholder: '搜索, 快捷键 「s」',
+            placeholder: '搜索',
           }
         }
       }
@@ -33,31 +33,16 @@ module.exports = {
     lastUpdated: false,
     contributors: false,
     sidebarDepth: 1,
-    home: '/guide/about-uTools.html',
+    home: '/developer/welcome.html',
     navbar: [
-      { text: '使用指南', link: '/guide/about-uTools', 'activeMatch': '/guide/' },
-      { text: '插件开发', link: '/developer/welcome', 'activeMatch': '/developer/' },
+      { text: '开发者文档', link: '/developer/welcome', 'activeMatch': '/developer/' },
       { text: 'uTools 官网', link: 'https://u.tools' },
-      { text: '社区', link: 'https://yuanliao.info' }
+      { text: '猿料社区', link: 'https://yuanliao.info' }
     ],
     sidebar: {
-      '/guide/': [
-        {
-          'text': '用户指南',
-          'children': [
-            '/guide/about-uTools',
-            '/guide/skills',
-            '/guide/share',
-            '/guide/ppt',
-            '/guide/enterprise',
-            '/guide/faq',
-          ]
-        }
-
-      ],
        '/developer/': [
         {
-          'text': '插件开发',
+          'text': '开发者文档',
           children: [
             '/developer/welcome',
             '/developer/config',

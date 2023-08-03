@@ -124,6 +124,13 @@ features 描述了当 uTools 主输入框内容产生变化时，此插件应用
 
 功能图标, 相对路径。支持 png、jpg、svg 格式，此为`可选项`
 
+
+### `features.mainPush`
+
+- 类型： `Boolean`
+
+是否向搜索面板推送信息，此为`可选项`
+
 ### `features.platform`
 
 - 类型： `Array`

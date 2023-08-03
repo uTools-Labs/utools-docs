@@ -17,10 +17,13 @@
     - `payload` String | Object | Array
       
       > feature.cmd.type 对应匹配的数据
+    - `option` undefined | Object
+
+      > feature.mainPush 设置为 ture ，且当用户选择 onMainPush 返回的选项进入时
 > 进入插件应用时，uTools 将会主动调用这个方法。
 #### 示例
 ```js
-utools.onPluginEnter(({code, type, payload}) => {
+utools.onPluginEnter(({code, type, payload, option}) => {
   console.log('用户进入插件应用', code, type, payload)
 })
 
@@ -54,6 +57,67 @@ data:image/png;base64,...
 
 type 为 "text"、"regex"、 "over" 时， payload 值为进入插件应用时的主输入框文本
 */
+```
+
+### `onMainPush(callback, selectCallback)`
+- `callback` Function  
+  - `Object`
+    - `code` String
+      
+      > plugin.json 配置的 feature.code
+    - `type` String
+      
+      > plugin.json 配置的 feature.cmd.type，可以为 "text"、"img"、 "files"、 "regex"、 "over"、"window"
+    - `payload` String | Object | Array
+      
+      > feature.cmd.type 对应匹配的数据
+  
+  - `返回` Array
+
+    > 返回内容，协议如下 [{ icon: '图标.png', text: '文本内容', title: '鼠标移动到选项时显示的提示' }, ...]
+- `selectCallback` Function
+  - `Object`
+    - `code` String
+      
+      > plugin.json 配置的 feature.code
+    - `type` String
+      
+      > plugin.json 配置的 feature.cmd.type，可以为 "text"、"img"、 "files"、 "regex"、 "over"、"window"
+    - `payload` String | Object | Array
+      
+      > feature.cmd.type 对应匹配的数据
+    - `option` Object
+      
+      > callback 中返回的列表其中选项
+  
+  - `返回` undefined | Boolean
+  
+    > 返回 true 表示进入插件应用
+> 向搜索面板推送消息(需要 feature.mainPush 设置为 true)
+#### 示例
+```js
+function callback ({code, type, payload }) {
+  return [
+    {
+      icon: 'icon.png',
+      text: '选项1',
+      title: 'help text'
+    },
+    {
+      text: '选项2',
+      anyField: 'xxxx'
+    }
+  ]
+}
+function selectCallback ({code, type, payload, option }) {
+  if (option.xxx) {
+    // 返回 true 表示需要进入插件应用处理
+    return true
+  }
+  // 不进入插件应用 "执行粘贴文本"
+  utools.hideMainWindowPasteText(option.text)
+}
+utools.onMainPush(callback, selectCallback)
 ```
 
 ### `onPluginOut(callback)`
@@ -204,38 +268,31 @@ utools.outPlugin()
 ```
 
 ### `redirect(label, payload)`
-- `label` String
+- `label` Array | String
   
-  > feature.cmd.label 名称
+  > Array[0]: 插件应用名称，Array[1]: 功能关键字 | 功能关键字
 - `payload` String | Object
-  
-  > feature.cmd.type 对应的数据
+
 - `返回` Boolean
-> 该方法可以携带数据，跳转到另一个插件应用进行处理，如果用户未安装对应的插件应用，uTools 会弹出提醒并引导进入插件应用市场下载。
+> 该方法可以携带数据，跳转到另一个插件应用进行处理，如果用户未安装对应的插件应用将引导进入插件应用市场下载。
 #### 示例
 ```js
-//content 为string类型
+// 跳转到插件应用「聚合翻译」并翻译内容
+utools.redirect(['聚合翻译', '翻译'], 'hello world')
+
+// 找到 “翻译” 关键字，并自动跳转到对应插件应用
 utools.redirect('翻译', 'hello world')
 
-//content 为object类型
-utools.redirect('翻译', {
-	'type': 'text',
-	'data': 'hello world'
-})
-
-//传递图片
-utools.redirect('图片识别', {
+// 跳转到插件应用「OCR 文字识别」并识别图片中文字
+utools.redirect(['OCR 文字识别', 'OCR 文字识别'], {
 	'type': 'img',
-	// data 可以是本地图片路径、base64编码的图片、Buffer对象
-	'data': '/path/to/img.jpg(支持jpeg|png|bmp)' //filePath、base64、Buffer
+	'data': 'data:image/png;base64,' // base64
 })
 
-//传递文件、文件夹
-utools.redirect('图片压缩', {
+// 跳转到插件应用「JSON 编辑器」查看 Json 文件
+utools.redirect(['JSON 编辑器', 'Json'], {
 	'type': 'files',
-	// data 可以是本地文件、文件夹路径
-	'data': '/path/to/img.jpg' //filePath、array
-	//'data': ['path1', 'path2'] //支持数组
+	'data': '/path/test.json' // 支持数组
 })
 ```
 
@@ -422,7 +479,7 @@ utools.removeFeature('code')
 - `返回` Object
 
   > { avatar: String, nickname: String, type: 'member' | 'user' } | null
-> 获取当前用户，未登录帐号返回 `null`
+> 获取当前用户，未登录账号返回 `null`
 ```js
 console.log(utools.getUser())
 ```
@@ -439,7 +496,41 @@ utools.fetchUserServerTemporaryToken().then((ret) => {
 })
 ```
 
-## 支付
+## 付费
+
+### `isPurchasedUser()`
+
+- `返回` Object
+
+  > Boolean | String
+> 是否付费用户，返回 `true` 表示永久授权，返回 `"yyyy-mm-dd hh:mm:ss"` 表示授权到期时间
+```js
+if (utools.isPurchasedUser()) {
+  // 已付费的合法用户，可使用插件应用完整功能
+}
+```
+
+### `openPurchase(options, callback)`
+
+- `options`
+    - `goodsId` String
+      
+      > 商品 ID，在 “ uTools 开发者工具” 插件应用中创建
+    - `outOrderId` String  (可选)
+
+      > 第三方服务生成的订单号（6 - 64 字符）
+    - `attach` String (可选)
+
+      > 第三方服务附加数据，在查询API和支付通知中原样返回，可作为自定义参数使用（最多 256 字符）
+- `callback`
+  
+  > 购买成功后回调
+> 打开付费 (软件付费模式)
+```js
+utools.openPurchase({ goodsId: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' }, () => {
+  // 购买完成，解锁全部功能
+})
+```
 
 ### `openPayment(options, callback)`
 
@@ -456,10 +547,10 @@ utools.fetchUserServerTemporaryToken().then((ret) => {
 - `callback`
   
   > 支付成功后回调
-> 打开支付
+> 打开支付 (服务付费模式)
 ```js
 utools.openPayment({ goodsId: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' }, () => {
-  // 用户完成支付，继续业务代码
+  // 用户完成支付
 })
 ```
 
@@ -470,7 +561,6 @@ utools.openPayment({ goodsId: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' }, () => {
 > 获取用户支付记录
 ```js
 utools.fetchUserPayments().then((ret) => {
-  // 判断如果存在支付记录则继续相关业务
   console.log(ret);
   /**
   	    {
@@ -486,6 +576,58 @@ utools.fetchUserPayments().then((ret) => {
     }
   */
 })
+```
+
+## 输入
+
+### `hideMainWindowPasteFile(file)`
+- `file` String | Array
+  
+  > 文件路径或文件路径集合
+
+- `返回` Boolean
+> 粘贴文件
+#### 示例
+```js
+utools.hideMainWindowPasteFile('/path/to/file')
+```
+
+### `hideMainWindowPasteImage(img)`
+- `img` String | Uint8Array
+
+  > 图片路径 或 base64 或 Uint8Array
+
+- `返回` Boolean
+> 粘贴图像
+#### 示例
+```js
+// 路径
+utools.hideMainWindowPasteImage('/path/to/img.png')
+// base64
+utools.hideMainWindowPasteImage('data:image/png;base64,xxxxxxxxx')
+```
+
+### `hideMainWindowPasteText(text)`
+- `text` String
+
+  > 字符串文本
+- `返回` Boolean
+> 粘贴文本
+#### 示例
+```js
+utools.hideMainWindowPasteText('Hi, uTools')
+```
+
+### `hideMainWindowTypeString(text)`
+- `text` String
+  
+  > 任意文本包括 Emoji 符号字符
+- `返回` Boolean
+> 输入字符串(输入法原理)
+#### 示例
+```js
+// 输入一句文本
+utools.hideMainWindowTypeString('uTools 新一代效率工具平台 - 🐼👏🦄👨‍👩‍👧‍👦🚵🏻')
 ```
 
 ## 工具
@@ -518,17 +660,6 @@ utools.screenColorPick(({hex, rgb})=>{
 utools.screenCapture(base64Str => {
   utools.redirect('识别图片中文字', { type: 'img', data: base64Str })
 })
-```
-
-### `hideMainWindowTypeString(text)`
-- `text` String
-  
-  > 任意文本包括 Emoji 符号字符
-> 隐藏主窗口键盘输入字符串(输入法原理)，插件应用应用未分离下才能正常执行
-#### 示例
-```js
-// 输入一句文本
-utools.hideMainWindowTypeString('uTools 新一代效率工具平台 - 🐼👏🦄👨‍👩‍👧‍👦🚵🏻')
 ```
 
 ## 模拟
@@ -774,6 +905,14 @@ utools.shellBeep()
 // 存储只与当前设备相关的信息
 const nativeId = utools.getNativeId()
 utools.dbStorage.setItem(nativeId + '/key', 'native value')
+```
+
+### `getAppName()`
+- `返回` String
+> 获取软件名称
+#### 示例
+```js
+console.log(utools.getAppName())
 ```
 
 ### `getAppVersion()`

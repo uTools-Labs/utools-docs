@@ -3,13 +3,11 @@ uTools browser 简称 ubrowser，是根据 uTools 的特性，量身打造的一
 
 ubrowser 拥有优雅的链式调用接口，可以用口语化的数行代码，实现一系列匪夷所思的操作。例如：
 
-1、自动化测试（自动打开页面、点击、判断，彻底解放测试人员。）
+1、RPA 自动化脚本
 
-2、自动抢票
+2、网页魔改
 
-3、自动去除搜索引擎广告
-
-4、自动将选中的文字、图片保存到各类云笔记
+3、网页抓取
 
 
 基本 demo：
@@ -58,7 +56,7 @@ utools.ubrowser.goto('https://cn.bing.com')
 - `key` String
 - `modifier` String (可选)
   
-  > control | ctrl | shift | meta | alt | command | cmd
+  > ctrl | shift | alt | meta
 > 键盘按键
 
 ### `paste(text)`
@@ -243,12 +241,14 @@ utools.ubrowser.goto('https://cn.bing.com')
 - `y` Integer
 > X轴和Y轴滚动
 
-### `run(ubrowserId)`
-- `ubrowserId` Integer
+### `download(url, savePath)`
+- `url` String
   
-  > utools.getIdleUBrowsers() 中获得
-- `返回` Promise
-> 运行在闲置的 ubrowser 上
+  > 下载文件的URL
+- `savePath` String (可选)
+
+  > 保存路径(保存所在文件夹或文件绝对路径)
+> 文件下载
 
 ### `run(options)`
 - `options` Object
@@ -274,7 +274,15 @@ utools.ubrowser.goto('https://cn.bing.com')
     - opacity Number (可选) 设置窗口初始的不透明度，介于 0.0  (完全透明) 和 1.0 (完全不透明) 之间。仅支持 Windows 和 macOS 。
 
 - `返回` Promise
-> 启动一个 ubrowser 运行
+> 启动 ubrowser 运行实例
+
+### `run(ubrowserId)`
+- `ubrowserId` Integer
+  
+  > 1. run(options) 运行结束后, 当 ubrowser 实例窗口仍然显示时返回 
+  > 2. utools.getIdleUBrowsers() 中获得
+- `返回` Promise
+> 运行在闲置状态(已运行结束，未关闭)的 ubrowser 实例上
 
 ## ubrowser 管理
 
@@ -288,7 +296,7 @@ utools.ubrowser.goto('https://cn.bing.com')
 
 ```js
 console.log(utools.getIdleUBrowsers())
-// [{ id: number, title: string, url: string }]
+// [{ id: number, title: string, url: string, x: number, y: number, width: number, height: number }]
 ```
 
 ### `setUBrowserProxy(config)`
